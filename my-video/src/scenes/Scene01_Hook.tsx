@@ -1,6 +1,6 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig, Img, staticFile } from "remotion";
-import { BottomFade, TopFade } from "../components/CinematicBackground";
+import { AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig } from "remotion";
+import { CinematicBackground, BottomFade, TopFade } from "../components/CinematicBackground";
 import { LightSweep } from "../components/LightSweep";
 import { COLORS, FONTS, GRADIENT, SHADOW } from "../constants/theme";
 import { SPRING_GENTLE, SPRING_SNAPPY } from "../constants/timing";
@@ -41,22 +41,7 @@ export const Scene01_Hook: React.FC<Scene01Props> = ({
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      {/* Real project photo — slow Ken Burns zoom */}
-      <AbsoluteFill style={{ overflow: "hidden" }}>
-        <Img
-          src={staticFile("skyipark-main.jpg")}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center 60%",
-            transform: `scale(${interpolate(frame, [0, durationInFrames], [1.08, 1.0])}) translateX(${interpolate(frame, [0, durationInFrames], [0, -2])}%)`,
-          }}
-        />
-        {/* Deep cinematic colour grade overlay */}
-        <div style={{ position: "absolute", inset: 0, background: "rgba(8,8,8,0.62)" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(10,22,15,0.5) 0%, transparent 60%)" }} />
-      </AbsoluteFill>
+      <CinematicBackground variant="hero" zoom pan="left" />
       <TopFade />
       <BottomFade />
       <LightSweep delay={5} duration={35} color="rgba(201,168,76,0.1)" />

@@ -1,6 +1,6 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame, spring, interpolate, useVideoConfig, Img, staticFile } from "remotion";
-import { BottomFade } from "../components/CinematicBackground";
+import { AbsoluteFill, useCurrentFrame, spring, interpolate, useVideoConfig } from "remotion";
+import { CinematicBackground, BottomFade } from "../components/CinematicBackground";
 import { LightSweep, GoldLine } from "../components/LightSweep";
 import { GlassMorphCard } from "../components/GlassMorphCard";
 import { COLORS, FONTS, GRADIENT, SHADOW } from "../constants/theme";
@@ -23,21 +23,7 @@ export const Scene02_AerialReveal: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      {/* Real photo — slow rightward pan reveal */}
-      <AbsoluteFill style={{ overflow: "hidden" }}>
-        <Img
-          src={staticFile("skyipark-main.jpg")}
-          style={{
-            width: "110%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center 55%",
-            transform: `translateX(${interpolate(frame, [0, durationInFrames], [-5, 0])}%)`,
-          }}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "rgba(8,8,8,0.55)" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(8,8,8,0.6) 0%, transparent 40%, rgba(8,8,8,0.85) 100%)" }} />
-      </AbsoluteFill>
+      <CinematicBackground variant="aerial" zoom={false} pan="right" />
 
       {/* Sky gradient with simulated towers */}
       <AbsoluteFill>

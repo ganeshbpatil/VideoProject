@@ -1,6 +1,6 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame, spring, interpolate, useVideoConfig, Img, staticFile } from "remotion";
-import { BottomFade, TopFade } from "../components/CinematicBackground";
+import { AbsoluteFill, useCurrentFrame, spring, interpolate, useVideoConfig } from "remotion";
+import { CinematicBackground, BottomFade, TopFade } from "../components/CinematicBackground";
 import { KineticHeadline } from "../components/KineticHeadline";
 import { AnimatedCaption } from "../components/AnimatedCaption";
 import { LightSweep } from "../components/LightSweep";
@@ -27,21 +27,7 @@ export const Scene03_Architecture: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ opacity: exitOpacity }}>
-      {/* Real photo — upward tilt / zoom into towers */}
-      <AbsoluteFill style={{ overflow: "hidden" }}>
-        <Img
-          src={staticFile("skyipark-main.jpg")}
-          style={{
-            width: "100%",
-            height: "115%",
-            objectFit: "cover",
-            objectPosition: "center 70%",
-            transform: `scale(${interpolate(frame, [0, durationInFrames], [1.05, 1.0])}) translateY(${interpolate(frame, [0, durationInFrames], [0, -4])}%)`,
-          }}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "rgba(5,5,15,0.65)" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(5,5,15,0.7) 0%, transparent 35%, rgba(5,5,15,0.9) 100%)" }} />
-      </AbsoluteFill>
+      <CinematicBackground variant="architecture" zoom />
       <TopFade />
       <BottomFade />
       <LightSweep delay={10} color="rgba(201,168,76,0.07)" angle={-30} />
