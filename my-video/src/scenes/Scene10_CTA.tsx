@@ -1,6 +1,6 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame, spring, interpolate, useVideoConfig } from "remotion";
-import { CinematicBackground, BottomFade, TopFade } from "../components/CinematicBackground";
+import { AbsoluteFill, useCurrentFrame, spring, interpolate, useVideoConfig, Img, staticFile } from "remotion";
+import { BottomFade, TopFade } from "../components/CinematicBackground";
 import { CTASection } from "../components/CTASection";
 import { LightSweep, GoldLine } from "../components/LightSweep";
 import { COLORS, FONTS, GRADIENT, SHADOW } from "../constants/theme";
@@ -25,7 +25,22 @@ export const Scene10_CTA: React.FC<Scene10CTAProps> = ({
 
   return (
     <AbsoluteFill>
-      <CinematicBackground variant="cta" zoom={false} />
+      {/* Real photo — heavily dimmed, luxurious backdrop for CTA */}
+      <AbsoluteFill style={{ overflow: "hidden" }}>
+        <Img
+          src={staticFile("skyipark-main.jpg")}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center 50%",
+            filter: "blur(2px)",
+            transform: "scale(1.04)",
+          }}
+        />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(5,5,5,0.82)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%)" }} />
+      </AbsoluteFill>
       <TopFade />
       <BottomFade />
       <LightSweep delay={5} color="rgba(201,168,76,0.12)" duration={80} />
