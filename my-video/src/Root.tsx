@@ -4,6 +4,7 @@ import { Composition } from "remotion";
 import { Video60s, TOTAL_60S } from "./compositions/Video60s";
 import { Video45s, TOTAL_45S } from "./compositions/Video45s";
 import { Video30s, TOTAL_30S } from "./compositions/Video30s";
+import { VideoReels, TOTAL_REELS } from "./compositions/VideoReels";
 import { FPS } from "./constants/timing";
 
 const VERTICAL  = { width: 1080, height: 1920 };
@@ -13,6 +14,9 @@ const LANDSCAPE = { width: 1920, height: 1080 };
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* ★ Instagram Reels — Real photo, 30s vertical */}
+      <Composition id="SKYiPark-Reels-30s" component={VideoReels} durationInFrames={TOTAL_REELS} fps={FPS} {...VERTICAL} defaultProps={{}} />
+
       {/* 60s Full Film */}
       <Composition id="SKYiPark-60s-Landscape" component={Video60s} durationInFrames={TOTAL_60S} fps={FPS} {...LANDSCAPE} defaultProps={{}} />
       <Composition id="SKYiPark-60s-Vertical"  component={Video60s} durationInFrames={TOTAL_60S} fps={FPS} {...VERTICAL}  defaultProps={{}} />
@@ -21,8 +25,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="SKYiPark-45s-Landscape" component={Video45s} durationInFrames={TOTAL_45S} fps={FPS} {...LANDSCAPE} defaultProps={{}} />
       <Composition id="SKYiPark-45s-Vertical"  component={Video45s} durationInFrames={TOTAL_45S} fps={FPS} {...VERTICAL}  defaultProps={{}} />
 
-      {/* 30s Reels / Shorts */}
-      <Composition id="SKYiPark-30s-Reels"     component={Video30s} durationInFrames={TOTAL_30S} fps={FPS} {...VERTICAL}  defaultProps={{}} />
+      {/* 30s CSS version */}
       <Composition id="SKYiPark-30s-Landscape" component={Video30s} durationInFrames={TOTAL_30S} fps={FPS} {...LANDSCAPE} defaultProps={{}} />
       <Composition id="SKYiPark-30s-Square"    component={Video30s} durationInFrames={TOTAL_30S} fps={FPS} {...SQUARE}    defaultProps={{}} />
     </>
